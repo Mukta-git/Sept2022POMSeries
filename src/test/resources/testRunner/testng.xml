@@ -10,7 +10,8 @@
 			class-name="com.qa.opencart.listeners.TestAllureListener" />
 	</listeners>
 	
-  <test name="Login Page Test">    
+  <test name="Login Page Test"> 
+	<parameter name="browser" value="chrome" />
    
     <classes>
        <class name="com.qa.opencart.tests.LoginPageTest"/>
@@ -18,6 +19,7 @@
    </test> 
    
  <test name="ProductInfo Page Test">    
+	<parameter name="browser" value="chrome" />
    
     <classes>
        <class name="com.qa.opencart.tests.ProductInfoPageTest"/>
