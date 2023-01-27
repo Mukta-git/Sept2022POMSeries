@@ -27,12 +27,12 @@ public class DriverFactory {
 	
 	public WebDriver initDriver(Properties prop) {
 		String browserName= prop.getProperty("browser").trim();
-		highlight=prop.getProperty("highlight").trim();
+		//highlight=prop.getProperty("highlight").trim();
 		optionsManager= new OptionsManager(prop);
 		
 		if(browserName.equalsIgnoreCase("chrome")) {
 			
-			System.setProperty("webdriver.chrome.driver", "C:\\Users\\MuktaSeth\\Downloads\\drivers\\chromedriver.exe");
+			//System.setProperty("webdriver.chrome.driver", "C:\\Users\\MuktaSeth\\Downloads\\drivers\\chromedriver.exe");
 			//driver=new ChromeDriver(optionsManager.getChromeOptions());
 			//tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
 
@@ -41,18 +41,19 @@ public class DriverFactory {
 				init_remoteDriver("chrome");
 			} else {
 				// local execution
-				driver=new ChromeDriver(optionsManager.getChromeOptions());
-				//tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
+				//driver=new ChromeDriver(optionsManager.getChromeOptions());
+				tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
 			}	
 		
 		}
 		 else if (browserName.equalsIgnoreCase("firefox")) {
-
+			// System.setProperty("webdriver.gecko.driver","C:\\Users\\MuktaSeth\\Downloads\\drivers\\GeckoDriver.exe");
 				if (Boolean.parseBoolean(prop.getProperty("remote"))) {
 					// remote execution on docker/grid/cloud
 					init_remoteDriver("firefox");
 				} else {
 					// local execution
+					//driver=new FirefoxDriver(optionsManager.getFirefoxOptions());
 					tlDriver.set(new FirefoxDriver(optionsManager.getFirefoxOptions()));
 				}
 
@@ -64,6 +65,7 @@ public class DriverFactory {
 				init_remoteDriver("edge");
 			} else {
 				// local execution
+			//	driver=new  EdgeDriver(optionsManager.getEdgeOptions());
 				tlDriver.set(new EdgeDriver(optionsManager.getEdgeOptions()));
 			}
 
@@ -76,11 +78,11 @@ public class DriverFactory {
 			System.out.println("Please pass right browsername"+browserName);
 		}
 		
-		driver.manage().deleteAllCookies();
-		driver.manage().window().maximize();
-		driver.get(prop.getProperty("url"));
+		getDriver().manage().deleteAllCookies();
+		getDriver().manage().window().maximize();
+		getDriver().get(prop.getProperty("url"));
 
-		return driver;
+		return getDriver();
 		
 }
 	

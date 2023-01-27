@@ -23,6 +23,7 @@ public class OptionsManager {
 		if(Boolean.parseBoolean(prop.getProperty("remote"))) {
 			co.setCapability("enableVNC", true);
 			co.setPlatformName("linux");
+			co.setBrowserVersion(prop.getProperty("browserversion"));
 		}
 		
 		if(Boolean.parseBoolean( (String) prop.get("headless"))) {
@@ -45,6 +46,7 @@ public class OptionsManager {
 		if (Boolean.parseBoolean(prop.getProperty("headless"))) {
 			System.out.println(".....Running the test in Headless mode.......");
 			fo.setHeadless(true);
+			fo.setBrowserVersion(prop.getProperty("browserversion"));
 
 		}
 		return fo;
